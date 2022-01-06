@@ -1,0 +1,2704 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Measurement Document",
+    "version": "1 ",
+    "description": "\r\n\r\nThe data transferred to the system after a measurement has been taken at a measuring point or a counter is described in the SAP system as a measurement document.\r\n\r\nThe payload used to create a measurement document through this API is sent in JSON format as a request object. The long text for the measurement document is included within as a nested object.\r\n"
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_ON-PREMISE/2021.000/EN/6a/fa93607aa74b1bb0aebdbe2867c8f9/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Create, update, read, set reversal indicator and reset reversal indicator using this synchronous inbound service",
+  "x-sap-api-deprecated": "No",
+  "x-sap-software-min-version": "2021",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "Basic, x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Measurement Document",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "x-sap-stateInfo": {
+    "state": "active"
+  },
+  "security": [
+    {
+      "basicAuthentication": []
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_measurementdocument/srvd_a2x/sap/measurementdocument/0001",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Failed Measurement Document Reading"
+    },
+    {
+      "name": "Measurement Documents"
+    },
+    {
+      "name": "Measurement Document Text"
+    }
+  ],
+  "paths": {
+    "/FailedMeasurementReading": {
+      "get": {
+        "summary": "Get entities from FailedMeasurementReading",
+        "tags": [
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MsmtRdngDate",
+                  "MsmtRdngDate desc",
+                  "MsmtRdngTime",
+                  "MsmtRdngTime desc",
+                  "MsmtRdngSourceMeasurementDoc",
+                  "MsmtRdngSourceMeasurementDoc desc",
+                  "MeasuringPoint",
+                  "MeasuringPoint desc",
+                  "MsmtRdngTransfFailedMsgNumber",
+                  "MsmtRdngTransfFailedMsgNumber desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "MsmtRdngSourceMeasurementDoc",
+                  "MeasuringPoint",
+                  "MsmtRdngTransfFailedMsgNumber",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of FailedMeasurementReadingType",
+                  "type": "object",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/FailedMeasurementReading(MsmtRdngDate={MsmtRdngDate},MsmtRdngTime={MsmtRdngTime},MsmtRdngSourceMeasurementDoc='{MsmtRdngSourceMeasurementDoc}',MeasuringPoint='{MeasuringPoint}')": {
+      "parameters": [
+        {
+          "name": "MsmtRdngDate",
+          "in": "path",
+          "required": true,
+          "description": "Date of the Measurement",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        },
+        {
+          "name": "MsmtRdngTime",
+          "in": "path",
+          "required": true,
+          "description": "Time of Measurement",
+          "schema": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04"
+          }
+        },
+        {
+          "name": "MsmtRdngSourceMeasurementDoc",
+          "in": "path",
+          "required": true,
+          "description": "Source Document for Measurement Reading Transfer",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        },
+        {
+          "name": "MeasuringPoint",
+          "in": "path",
+          "required": true,
+          "description": "Measuring Point",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from FailedMeasurementReading by key",
+        "tags": [
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "MsmtRdngSourceMeasurementDoc",
+                  "MeasuringPoint",
+                  "MsmtRdngTransfFailedMsgNumber",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/FailedMeasurementReading(MsmtRdngDate={MsmtRdngDate},MsmtRdngTime={MsmtRdngTime},MsmtRdngSourceMeasurementDoc='{MsmtRdngSourceMeasurementDoc}',MeasuringPoint='{MeasuringPoint}')/SAP__self.RepeatMsmtReadingTransfer": {
+      "post": {
+        "summary": "Invoke action RepeatMsmtReadingTransfer",
+        "tags": [
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "name": "MsmtRdngDate",
+            "in": "path",
+            "required": true,
+            "description": "Date of the Measurement",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-04-13"
+            }
+          },
+          {
+            "name": "MsmtRdngTime",
+            "in": "path",
+            "required": true,
+            "description": "Time of Measurement",
+            "schema": {
+              "type": "string",
+              "format": "time",
+              "example": "15:51:04"
+            }
+          },
+          {
+            "name": "MsmtRdngSourceMeasurementDoc",
+            "in": "path",
+            "required": true,
+            "description": "Source Document for Measurement Reading Transfer",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          },
+          {
+            "name": "MeasuringPoint",
+            "in": "path",
+            "required": true,
+            "description": "Measuring Point",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/FailedMeasurementReading(MsmtRdngDate={MsmtRdngDate},MsmtRdngTime={MsmtRdngTime},MsmtRdngSourceMeasurementDoc='{MsmtRdngSourceMeasurementDoc}',MeasuringPoint='{MeasuringPoint}')/_MeasurementDocument": {
+      "parameters": [
+        {
+          "name": "MsmtRdngDate",
+          "in": "path",
+          "required": true,
+          "description": "Date of the Measurement",
+          "schema": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13"
+          }
+        },
+        {
+          "name": "MsmtRdngTime",
+          "in": "path",
+          "required": true,
+          "description": "Time of Measurement",
+          "schema": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04"
+          }
+        },
+        {
+          "name": "MsmtRdngSourceMeasurementDoc",
+          "in": "path",
+          "required": true,
+          "description": "Source Document for Measurement Reading Transfer",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        },
+        {
+          "name": "MeasuringPoint",
+          "in": "path",
+          "required": true,
+          "description": "Measuring Point",
+          "schema": {
+            "type": "string",
+            "maxLength": 12
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _MeasurementDocument",
+        "tags": [
+          "Failed Measurement Document Reading",
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasuringPoint",
+                  "MeasuringPointPositionNumber",
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "Characteristic",
+                  "MsmtDocumentReferredOrder",
+                  "RefdMaintOrderOpStatusObject",
+                  "MaintenanceOrderOperation",
+                  "MaintenanceOrderSubOperation",
+                  "MsmtIsDoneAfterTaskCompltn",
+                  "CharcValueUnit",
+                  "MeasurementReading",
+                  "MeasurementReadingInEntryUoM",
+                  "MeasurementReadingEntryUoM",
+                  "MeasurementCounterReading",
+                  "MsmtCounterReadingDifference",
+                  "TotalMsmtRdngIsSetExternally",
+                  "MeasuringPointTargetValue",
+                  "MsmtValuationCode",
+                  "MeasurementDocumentText",
+                  "MeasurementDocumentHasLongText",
+                  "MsmtRdngByUser",
+                  "MsmtRdngStatus",
+                  "MsmtCntrReadingDiffIsEntered",
+                  "MsmtRdngIsReversed",
+                  "MsmtCounterReadingIsReplaced",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_FailedMeasurementReading",
+                  "_MeasurementDocumentLongText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/FailedMeasurementReading(MsmtRdngDate={MsmtRdngDate},MsmtRdngTime={MsmtRdngTime},MsmtRdngSourceMeasurementDoc='{MsmtRdngSourceMeasurementDoc}',MeasuringPoint='{MeasuringPoint}')/_MeasurementDocument/SAP__self.DeactivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action DeactivateReversalIndicator",
+        "tags": [
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "name": "MsmtRdngDate",
+            "in": "path",
+            "required": true,
+            "description": "Date of the Measurement",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-04-13"
+            }
+          },
+          {
+            "name": "MsmtRdngTime",
+            "in": "path",
+            "required": true,
+            "description": "Time of Measurement",
+            "schema": {
+              "type": "string",
+              "format": "time",
+              "example": "15:51:04"
+            }
+          },
+          {
+            "name": "MsmtRdngSourceMeasurementDoc",
+            "in": "path",
+            "required": true,
+            "description": "Source Document for Measurement Reading Transfer",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          },
+          {
+            "name": "MeasuringPoint",
+            "in": "path",
+            "required": true,
+            "description": "Measuring Point",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/FailedMeasurementReading(MsmtRdngDate={MsmtRdngDate},MsmtRdngTime={MsmtRdngTime},MsmtRdngSourceMeasurementDoc='{MsmtRdngSourceMeasurementDoc}',MeasuringPoint='{MeasuringPoint}')/_MeasurementDocument/SAP__self.ActivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action ActivateReversalIndicator",
+        "tags": [
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "name": "MsmtRdngDate",
+            "in": "path",
+            "required": true,
+            "description": "Date of the Measurement",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2017-04-13"
+            }
+          },
+          {
+            "name": "MsmtRdngTime",
+            "in": "path",
+            "required": true,
+            "description": "Time of Measurement",
+            "schema": {
+              "type": "string",
+              "format": "time",
+              "example": "15:51:04"
+            }
+          },
+          {
+            "name": "MsmtRdngSourceMeasurementDoc",
+            "in": "path",
+            "required": true,
+            "description": "Source Document for Measurement Reading Transfer",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          },
+          {
+            "name": "MeasuringPoint",
+            "in": "path",
+            "required": true,
+            "description": "Measuring Point",
+            "schema": {
+              "type": "string",
+              "maxLength": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument": {
+      "get": {
+        "summary": "Get entities from MeasurementDocument",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasurementDocument desc",
+                  "MeasuringPoint",
+                  "MeasuringPoint desc",
+                  "MeasuringPointPositionNumber",
+                  "MeasuringPointPositionNumber desc",
+                  "MsmtRdngDate",
+                  "MsmtRdngDate desc",
+                  "MsmtRdngTime",
+                  "MsmtRdngTime desc",
+                  "Characteristic",
+                  "Characteristic desc",
+                  "MsmtDocumentReferredOrder",
+                  "MsmtDocumentReferredOrder desc",
+                  "RefdMaintOrderOpStatusObject",
+                  "RefdMaintOrderOpStatusObject desc",
+                  "MaintenanceOrderOperation",
+                  "MaintenanceOrderOperation desc",
+                  "MaintenanceOrderSubOperation",
+                  "MaintenanceOrderSubOperation desc",
+                  "MsmtIsDoneAfterTaskCompltn",
+                  "MsmtIsDoneAfterTaskCompltn desc",
+                  "CharcValueUnit",
+                  "CharcValueUnit desc",
+                  "MeasurementReading",
+                  "MeasurementReading desc",
+                  "MeasurementReadingInEntryUoM",
+                  "MeasurementReadingInEntryUoM desc",
+                  "MeasurementReadingEntryUoM",
+                  "MeasurementReadingEntryUoM desc",
+                  "MeasurementCounterReading",
+                  "MeasurementCounterReading desc",
+                  "MsmtCounterReadingDifference",
+                  "MsmtCounterReadingDifference desc",
+                  "TotalMsmtRdngIsSetExternally",
+                  "TotalMsmtRdngIsSetExternally desc",
+                  "MeasuringPointTargetValue",
+                  "MeasuringPointTargetValue desc",
+                  "MsmtValuationCode",
+                  "MsmtValuationCode desc",
+                  "MeasurementDocumentText",
+                  "MeasurementDocumentText desc",
+                  "MeasurementDocumentHasLongText",
+                  "MeasurementDocumentHasLongText desc",
+                  "MsmtRdngByUser",
+                  "MsmtRdngByUser desc",
+                  "MsmtRdngStatus",
+                  "MsmtRdngStatus desc",
+                  "MsmtCntrReadingDiffIsEntered",
+                  "MsmtCntrReadingDiffIsEntered desc",
+                  "MsmtRdngIsReversed",
+                  "MsmtRdngIsReversed desc",
+                  "MsmtCounterReadingIsReplaced",
+                  "MsmtCounterReadingIsReplaced desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasuringPoint",
+                  "MeasuringPointPositionNumber",
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "Characteristic",
+                  "MsmtDocumentReferredOrder",
+                  "RefdMaintOrderOpStatusObject",
+                  "MaintenanceOrderOperation",
+                  "MaintenanceOrderSubOperation",
+                  "MsmtIsDoneAfterTaskCompltn",
+                  "CharcValueUnit",
+                  "MeasurementReading",
+                  "MeasurementReadingInEntryUoM",
+                  "MeasurementReadingEntryUoM",
+                  "MeasurementCounterReading",
+                  "MsmtCounterReadingDifference",
+                  "TotalMsmtRdngIsSetExternally",
+                  "MeasuringPointTargetValue",
+                  "MsmtValuationCode",
+                  "MeasurementDocumentText",
+                  "MeasurementDocumentHasLongText",
+                  "MsmtRdngByUser",
+                  "MsmtRdngStatus",
+                  "MsmtCntrReadingDiffIsEntered",
+                  "MsmtRdngIsReversed",
+                  "MsmtCounterReadingIsReplaced",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_FailedMeasurementReading",
+                  "_MeasurementDocumentLongText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of MeasurementDocumentType",
+                  "type": "object",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to MeasurementDocument",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument('{MeasurementDocument}')": {
+      "parameters": [
+        {
+          "name": "MeasurementDocument",
+          "in": "path",
+          "required": true,
+          "description": "Measurement Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from MeasurementDocument by key",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasuringPoint",
+                  "MeasuringPointPositionNumber",
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "Characteristic",
+                  "MsmtDocumentReferredOrder",
+                  "RefdMaintOrderOpStatusObject",
+                  "MaintenanceOrderOperation",
+                  "MaintenanceOrderSubOperation",
+                  "MsmtIsDoneAfterTaskCompltn",
+                  "CharcValueUnit",
+                  "MeasurementReading",
+                  "MeasurementReadingInEntryUoM",
+                  "MeasurementReadingEntryUoM",
+                  "MeasurementCounterReading",
+                  "MsmtCounterReadingDifference",
+                  "TotalMsmtRdngIsSetExternally",
+                  "MeasuringPointTargetValue",
+                  "MsmtValuationCode",
+                  "MeasurementDocumentText",
+                  "MeasurementDocumentHasLongText",
+                  "MsmtRdngByUser",
+                  "MsmtRdngStatus",
+                  "MsmtCntrReadingDiffIsEntered",
+                  "MsmtRdngIsReversed",
+                  "MsmtCounterReadingIsReplaced",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_FailedMeasurementReading",
+                  "_MeasurementDocumentLongText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in MeasurementDocument",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument('{MeasurementDocument}')/SAP__self.DeactivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action DeactivateReversalIndicator",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "name": "MeasurementDocument",
+            "in": "path",
+            "required": true,
+            "description": "Measurement Document",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument('{MeasurementDocument}')/SAP__self.ActivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action ActivateReversalIndicator",
+        "tags": [
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "name": "MeasurementDocument",
+            "in": "path",
+            "required": true,
+            "description": "Measurement Document",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument('{MeasurementDocument}')/_FailedMeasurementReading": {
+      "parameters": [
+        {
+          "name": "MeasurementDocument",
+          "in": "path",
+          "required": true,
+          "description": "Measurement Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _FailedMeasurementReading",
+        "tags": [
+          "Measurement Documents",
+          "Failed Measurement Document Reading"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MsmtRdngDate",
+                  "MsmtRdngDate desc",
+                  "MsmtRdngTime",
+                  "MsmtRdngTime desc",
+                  "MsmtRdngSourceMeasurementDoc",
+                  "MsmtRdngSourceMeasurementDoc desc",
+                  "MeasuringPoint",
+                  "MeasuringPoint desc",
+                  "MsmtRdngTransfFailedMsgNumber",
+                  "MsmtRdngTransfFailedMsgNumber desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "MsmtRdngSourceMeasurementDoc",
+                  "MeasuringPoint",
+                  "MsmtRdngTransfFailedMsgNumber",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of FailedMeasurementReadingType",
+                  "type": "object",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MeasurementDocument('{MeasurementDocument}')/_MeasurementDocumentLongText": {
+      "parameters": [
+        {
+          "name": "MeasurementDocument",
+          "in": "path",
+          "required": true,
+          "description": "Measurement Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _MeasurementDocumentLongText",
+        "tags": [
+          "Measurement Documents",
+          "Measurement Document Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasurementDocumentLongText",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MsmtDocumentLongText": {
+      "get": {
+        "summary": "Get entities from MsmtDocumentLongText",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasurementDocument desc",
+                  "SAP__Messages",
+                  "SAP__Messages desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasurementDocumentLongText",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of MsmtDocumentLongTextType",
+                  "type": "object",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to MsmtDocumentLongText",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MsmtDocumentLongText('{MeasurementDocument}')": {
+      "parameters": [
+        {
+          "name": "MeasurementDocument",
+          "in": "path",
+          "required": true,
+          "description": "Measurement Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from MsmtDocumentLongText by key",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasurementDocumentLongText",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_MeasurementDocument"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in MsmtDocumentLongText",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MsmtDocumentLongText('{MeasurementDocument}')/_MeasurementDocument": {
+      "parameters": [
+        {
+          "name": "MeasurementDocument",
+          "in": "path",
+          "required": true,
+          "description": "Measurement Document",
+          "schema": {
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related _MeasurementDocument",
+        "tags": [
+          "Measurement Document Text",
+          "Measurement Documents"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MeasurementDocument",
+                  "MeasuringPoint",
+                  "MeasuringPointPositionNumber",
+                  "MsmtRdngDate",
+                  "MsmtRdngTime",
+                  "Characteristic",
+                  "MsmtDocumentReferredOrder",
+                  "RefdMaintOrderOpStatusObject",
+                  "MaintenanceOrderOperation",
+                  "MaintenanceOrderSubOperation",
+                  "MsmtIsDoneAfterTaskCompltn",
+                  "CharcValueUnit",
+                  "MeasurementReading",
+                  "MeasurementReadingInEntryUoM",
+                  "MeasurementReadingEntryUoM",
+                  "MeasurementCounterReading",
+                  "MsmtCounterReadingDifference",
+                  "TotalMsmtRdngIsSetExternally",
+                  "MeasuringPointTargetValue",
+                  "MsmtValuationCode",
+                  "MeasurementDocumentText",
+                  "MeasurementDocumentHasLongText",
+                  "MsmtRdngByUser",
+                  "MsmtRdngStatus",
+                  "MsmtCntrReadingDiffIsEntered",
+                  "MsmtRdngIsReversed",
+                  "MsmtCounterReadingIsReplaced",
+                  "SAP__Messages"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "_FailedMeasurementReading",
+                  "_MeasurementDocumentLongText"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MsmtDocumentLongText('{MeasurementDocument}')/_MeasurementDocument/SAP__self.DeactivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action DeactivateReversalIndicator",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "parameters": [
+          {
+            "name": "MeasurementDocument",
+            "in": "path",
+            "required": true,
+            "description": "Measurement Document",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/MsmtDocumentLongText('{MeasurementDocument}')/_MeasurementDocument/SAP__self.ActivateReversalIndicator": {
+      "post": {
+        "summary": "Invoke action ActivateReversalIndicator",
+        "tags": [
+          "Measurement Document Text"
+        ],
+        "parameters": [
+          {
+            "name": "MeasurementDocument",
+            "in": "path",
+            "required": true,
+            "description": "Measurement Document",
+            "schema": {
+              "type": "string",
+              "maxLength": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET FailedMeasurementReading HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuthentication": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType": {
+        "type": "object",
+        "properties": {
+          "MsmtRdngDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Date",
+            "description": "Date of the Measurement"
+          },
+          "MsmtRdngTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Measurement time",
+            "description": "Time of Measurement"
+          },
+          "MsmtRdngSourceMeasurementDoc": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Source document",
+            "description": "Source Document for Measurement Reading Transfer"
+          },
+          "MeasuringPoint": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Measuring point",
+            "description": "Measuring Point"
+          },
+          "MsmtRdngTransfFailedMsgNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Message Number"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message"
+            }
+          },
+          "_MeasurementDocument": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+          }
+        },
+        "title": "Failed Measurement Document Reading"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType-create": {
+        "type": "object",
+        "properties": {
+          "MsmtRdngDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Date",
+            "description": "Date of the Measurement"
+          },
+          "MsmtRdngTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Measurement time",
+            "description": "Time of Measurement"
+          },
+          "MeasuringPoint": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Measuring point",
+            "description": "Measuring Point"
+          },
+          "MsmtRdngTransfFailedMsgNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Message Number"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-create"
+            }
+          },
+          "_MeasurementDocument": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-create"
+          }
+        },
+        "required": [
+          "MsmtRdngDate",
+          "MsmtRdngTime",
+          "MeasuringPoint"
+        ],
+        "title": "Failed Measurement Document Reading (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType-update": {
+        "type": "object",
+        "properties": {
+          "MsmtRdngTransfFailedMsgNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Message Number"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Failed Measurement Document Reading (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType": {
+        "type": "object",
+        "properties": {
+          "MeasurementDocument": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement document",
+            "description": "Measurement Document"
+          },
+          "MeasurementDocumentLongText": {
+            "type": "string",
+            "title": "Long Text"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message"
+            }
+          },
+          "_MeasurementDocument": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType"
+          }
+        },
+        "title": "Measurement Document Text"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType-create": {
+        "type": "object",
+        "properties": {
+          "MeasurementDocumentLongText": {
+            "type": "string",
+            "title": "Long Text"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-create"
+            }
+          },
+          "_MeasurementDocument": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-create"
+          }
+        },
+        "required": [
+          "MeasurementDocumentLongText"
+        ],
+        "title": "Measurement Document Text (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType-update": {
+        "type": "object",
+        "properties": {
+          "MeasurementDocumentLongText": {
+            "type": "string",
+            "title": "Long Text"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Measurement Document Text (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType": {
+        "type": "object",
+        "properties": {
+          "MeasurementDocument": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement document",
+            "description": "Measurement Document"
+          },
+          "MeasuringPoint": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Measuring point",
+            "description": "Measuring Point"
+          },
+          "MeasuringPointPositionNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement position",
+            "description": "Position Number of the Object Measuring Point (Sort Field)"
+          },
+          "MsmtRdngDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Date",
+            "description": "Date of the Measurement"
+          },
+          "MsmtRdngTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Measurement time",
+            "description": "Time of Measurement"
+          },
+          "Characteristic": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Characteristic Name"
+          },
+          "MsmtDocumentReferredOrder": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "Order object number",
+            "description": "Object Number of Order"
+          },
+          "RefdMaintOrderOpStatusObject": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "OpObjectNumber",
+            "description": "Object Number of Order Operation/Confirmation Counter etc."
+          },
+          "MaintenanceOrderOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MaintenanceOrderSubOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MsmtIsDoneAfterTaskCompltn": {
+            "type": "boolean",
+            "title": "Documtd after task",
+            "description": "Indicator: MeasDoc. Created After Associated Task"
+          },
+          "CharcValueUnit": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "MeasurementReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg",
+            "description": "Measurement Reading/Total Counter Reading in SI Unit"
+          },
+          "MeasurementReadingInEntryUoM": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg in EntryUnit",
+            "description": "Measurement Reading in Unit of Entry"
+          },
+          "MeasurementReadingEntryUoM": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Document MeasUnit",
+            "description": "Unit of Measurement for Document Entry"
+          },
+          "MeasurementCounterReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "CountReadng",
+            "description": "Counter Reading in SI Unit"
+          },
+          "MsmtCounterReadingDifference": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Difference",
+            "description": "Counter Reading Difference in SI Unit"
+          },
+          "TotalMsmtRdngIsSetExternally": {
+            "type": "boolean",
+            "title": "Set externally",
+            "description": "Indicator: Total Counter Reading Set Externally"
+          },
+          "MeasuringPointTargetValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Target value",
+            "description": "Measuring Point Target Value"
+          },
+          "MsmtValuationCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Valuation code",
+            "description": "Valuation Code"
+          },
+          "MeasurementDocumentText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Text",
+            "description": "Measurement Document Text"
+          },
+          "MeasurementDocumentHasLongText": {
+            "type": "boolean",
+            "title": "Long text exists",
+            "description": "Long Text Exists"
+          },
+          "MsmtRdngByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Reading taken by",
+            "description": "Person who Took the Measurement Reading"
+          },
+          "MsmtRdngStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Processing status",
+            "description": "Processing Status"
+          },
+          "MsmtCntrReadingDiffIsEntered": {
+            "type": "boolean",
+            "title": "Difference entered",
+            "description": "Indicator: Counter Reading Entered as Difference"
+          },
+          "MsmtRdngIsReversed": {
+            "type": "boolean",
+            "title": "Reversal indicator",
+            "description": "Reversal Indicator"
+          },
+          "MsmtCounterReadingIsReplaced": {
+            "type": "boolean",
+            "title": "Counter replacement",
+            "description": "Indicator: Counter Replaced"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message"
+            }
+          },
+          "_FailedMeasurementReading": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType"
+            }
+          },
+          "_MeasurementDocumentLongText": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType"
+          }
+        },
+        "title": "Measurement Documents"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-create": {
+        "type": "object",
+        "properties": {
+          "MeasurementDocument": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement document",
+            "description": "Measurement Document"
+          },
+          "MeasuringPoint": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Measuring point",
+            "description": "Measuring Point"
+          },
+          "MeasuringPointPositionNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement position",
+            "description": "Position Number of the Object Measuring Point (Sort Field)"
+          },
+          "MsmtRdngDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Date",
+            "description": "Date of the Measurement"
+          },
+          "MsmtRdngTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Measurement time",
+            "description": "Time of Measurement"
+          },
+          "Characteristic": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Characteristic Name"
+          },
+          "MsmtDocumentReferredOrder": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "Order object number",
+            "description": "Object Number of Order"
+          },
+          "RefdMaintOrderOpStatusObject": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "OpObjectNumber",
+            "description": "Object Number of Order Operation/Confirmation Counter etc."
+          },
+          "MaintenanceOrderOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MaintenanceOrderSubOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MsmtIsDoneAfterTaskCompltn": {
+            "type": "boolean",
+            "title": "Documtd after task",
+            "description": "Indicator: MeasDoc. Created After Associated Task"
+          },
+          "CharcValueUnit": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "MeasurementReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg",
+            "description": "Measurement Reading/Total Counter Reading in SI Unit"
+          },
+          "MeasurementReadingInEntryUoM": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg in EntryUnit",
+            "description": "Measurement Reading in Unit of Entry"
+          },
+          "MeasurementReadingEntryUoM": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Document MeasUnit",
+            "description": "Unit of Measurement for Document Entry"
+          },
+          "MeasurementCounterReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "CountReadng",
+            "description": "Counter Reading in SI Unit"
+          },
+          "MsmtCounterReadingDifference": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Difference",
+            "description": "Counter Reading Difference in SI Unit"
+          },
+          "TotalMsmtRdngIsSetExternally": {
+            "type": "boolean",
+            "title": "Set externally",
+            "description": "Indicator: Total Counter Reading Set Externally"
+          },
+          "MeasuringPointTargetValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Target value",
+            "description": "Measuring Point Target Value"
+          },
+          "MsmtValuationCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Valuation code",
+            "description": "Valuation Code"
+          },
+          "MeasurementDocumentText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Text",
+            "description": "Measurement Document Text"
+          },
+          "MeasurementDocumentHasLongText": {
+            "type": "boolean",
+            "title": "Long text exists",
+            "description": "Long Text Exists"
+          },
+          "MsmtRdngByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Reading taken by",
+            "description": "Person who Took the Measurement Reading"
+          },
+          "MsmtRdngStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Processing status",
+            "description": "Processing Status"
+          },
+          "MsmtCntrReadingDiffIsEntered": {
+            "type": "boolean",
+            "title": "Difference entered",
+            "description": "Indicator: Counter Reading Entered as Difference"
+          },
+          "MsmtRdngIsReversed": {
+            "type": "boolean",
+            "title": "Reversal indicator",
+            "description": "Reversal Indicator"
+          },
+          "MsmtCounterReadingIsReplaced": {
+            "type": "boolean",
+            "title": "Counter replacement",
+            "description": "Indicator: Counter Replaced"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-create"
+            }
+          },
+          "_FailedMeasurementReading": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.FailedMeasurementReadingType-create"
+            }
+          },
+          "_MeasurementDocumentLongText": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MsmtDocumentLongTextType-create"
+          }
+        },
+        "required": [
+          "MeasurementDocument",
+          "MeasuringPoint"
+        ],
+        "title": "Measurement Documents (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.MeasurementDocumentType-update": {
+        "type": "object",
+        "properties": {
+          "MeasuringPoint": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Measuring point",
+            "description": "Measuring Point"
+          },
+          "MeasuringPointPositionNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Measurement position",
+            "description": "Position Number of the Object Measuring Point (Sort Field)"
+          },
+          "MsmtRdngDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Date",
+            "description": "Date of the Measurement"
+          },
+          "MsmtRdngTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Measurement time",
+            "description": "Time of Measurement"
+          },
+          "Characteristic": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Characteristic Name"
+          },
+          "MsmtDocumentReferredOrder": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "Order object number",
+            "description": "Object Number of Order"
+          },
+          "RefdMaintOrderOpStatusObject": {
+            "type": "string",
+            "maxLength": 22,
+            "title": "OpObjectNumber",
+            "description": "Object Number of Order Operation/Confirmation Counter etc."
+          },
+          "MaintenanceOrderOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MaintenanceOrderSubOperation": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Operation",
+            "description": "Order Operation"
+          },
+          "MsmtIsDoneAfterTaskCompltn": {
+            "type": "boolean",
+            "title": "Documtd after task",
+            "description": "Indicator: MeasDoc. Created After Associated Task"
+          },
+          "CharcValueUnit": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Internal UoM",
+            "description": "Unit of Measurement"
+          },
+          "MeasurementReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg",
+            "description": "Measurement Reading/Total Counter Reading in SI Unit"
+          },
+          "MeasurementReadingInEntryUoM": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "MeasRdg in EntryUnit",
+            "description": "Measurement Reading in Unit of Entry"
+          },
+          "MeasurementReadingEntryUoM": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Document MeasUnit",
+            "description": "Unit of Measurement for Document Entry"
+          },
+          "MeasurementCounterReading": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "CountReadng",
+            "description": "Counter Reading in SI Unit"
+          },
+          "MsmtCounterReadingDifference": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Difference",
+            "description": "Counter Reading Difference in SI Unit"
+          },
+          "TotalMsmtRdngIsSetExternally": {
+            "type": "boolean",
+            "title": "Set externally",
+            "description": "Indicator: Total Counter Reading Set Externally"
+          },
+          "MeasuringPointTargetValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "format": "double",
+            "example": 3.14,
+            "title": "Target value",
+            "description": "Measuring Point Target Value"
+          },
+          "MsmtValuationCode": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Valuation code",
+            "description": "Valuation Code"
+          },
+          "MeasurementDocumentText": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Text",
+            "description": "Measurement Document Text"
+          },
+          "MeasurementDocumentHasLongText": {
+            "type": "boolean",
+            "title": "Long text exists",
+            "description": "Long Text Exists"
+          },
+          "MsmtRdngByUser": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Reading taken by",
+            "description": "Person who Took the Measurement Reading"
+          },
+          "MsmtRdngStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "title": "Processing status",
+            "description": "Processing Status"
+          },
+          "MsmtCntrReadingDiffIsEntered": {
+            "type": "boolean",
+            "title": "Difference entered",
+            "description": "Indicator: Counter Reading Entered as Difference"
+          },
+          "MsmtRdngIsReversed": {
+            "type": "boolean",
+            "title": "Reversal indicator",
+            "description": "Reversal Indicator"
+          },
+          "MsmtCounterReadingIsReplaced": {
+            "type": "boolean",
+            "title": "Counter replacement",
+            "description": "Indicator: Counter Replaced"
+          },
+          "SAP__Messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-update"
+            }
+          }
+        },
+        "title": "Measurement Documents (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-create": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_measurementdocument.v0001.SAP__Message-update": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalTargets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transition": {
+            "type": "boolean"
+          },
+          "numericSeverity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longtextUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "title": "SAP__Message (for update)"
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
