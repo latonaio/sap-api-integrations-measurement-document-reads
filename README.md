@@ -173,9 +173,9 @@ type Header struct {
 このように、BASE URLが "API_(リポジトリ名)_SRV" のフォーマットである API サービス の データレイアウトと、 Measurement Document の データレイアウトは、D、Results、Metadata、Value の配列構造を持っているか持っていないかという点が異なります。  
 
 ## Output  
-本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
+本マイクロサービスでは、[golang-logging-library-for-sap](https://github.com/latonaio/golang-logging-library-for-sap) により、以下のようなデータがJSON形式で出力されます。  
 以下の sample.json の例は、SAP 計測伝票 の ヘッダデータ が取得された結果の JSON の例です。  
-以下の項目のうち、"MeasurementDocument" ～ "MsmtCounterReadingIsReplaced" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+以下の項目のうち、"MeasurementDocument" ～ "MsmtCounterReadingIsReplaced" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library-for-sap による 定型フォーマットの出力結果です。  
 
 ```
 {
@@ -213,6 +213,6 @@ type Header struct {
 			"MsmtCounterReadingIsReplaced": false
 		}
 	],
-	"time": "2022-01-06T15:03:03.807815+09:00"
+	"time": "2022-01-28T18:21:36+09:00"
 }
 ```
